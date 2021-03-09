@@ -5,3 +5,8 @@ export type MarketItemType = {
   image?: string;
   url?: string
 };
+
+export type User = {
+  _id: string;
+  usrNM: string;
+};
