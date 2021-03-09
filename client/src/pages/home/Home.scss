@@ -28,18 +28,21 @@ li {
     margin: auto;
     padding: 0;
 
-    .add_new span {
-      background-color: #66a3ff;
-      color: #fff;
-      font-weight: 600;
-      height: 100%;
-      margin: 6px;
-      border-radius: 5px;
-      justify-content: center;
-      display: flex;
-      align-items: center;
-      padding: 38px;
-      text-align: center;
+    .add_new {
+      padding: 5px;
+      
+      span {
+        background-color: #66a3ff;
+        color: #fff;
+        font-weight: 600;
+        height: 100%;
+        border-radius: 5px;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        padding: 38px;
+        text-align: center;
+      }
     }
   }
 }

@@ -1,11 +1,11 @@
-# Coq Trotteur test repo
+# Coq Trotteur
 
 Repo for coq trotteur interview test.
 
 ## What is inside?
 
 - Node api (./api)
-- Gatsby client (./gatsby)
+- React client (./client)
 
 ## Start the app
 
@@ -16,7 +16,7 @@ Repo for coq trotteur interview test.
 2. Install dependencies
 
         $ cd ./api && yarn 
-        $ cd ./gatsby && yarn
+        $ cd ./client && yarn
     
 3. Start apps
 
@@ -26,6 +26,6 @@ Repo for coq trotteur interview test.
 
         $ npm start
 
-    You should be getting the client(gatsby) on localhost:8000 and the api on localhost:4040
+    You should be getting the client(gatsby) on localhost:3000 and the api on localhost:4040
 
     

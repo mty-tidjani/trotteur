@@ -64,9 +64,11 @@ const HomePage: React.FC = () => {
         <title>Home Page</title>
         <ul className="items_list">
           <div className="market_item_i">
-            <Lnk className="add_new" onClick={() => setModal({ show: true })}>
+            <div className="add_new">
+            <Lnk onClick={() => setModal({ show: true })}>
               <span>+ Créer une nouvelle offre</span>
             </Lnk>
+            </div>
           </div>
           {items.map((item, i) => (
             <MarketItem

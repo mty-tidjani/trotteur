@@ -3,8 +3,8 @@
 
   .drop_down {
     position: absolute;
-    right: 22px;
-    top: 20px;
+    right: 8px;
+    top: 8px;
     z-index: 1;
 
     .menu_toggle {
@@ -52,7 +52,7 @@
     }
   }
 
-  > a {
+  > div {
     display: block;
     display: inline-block;
     border-radius: 15px;
