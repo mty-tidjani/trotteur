@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { CreationModal } from '../components/modals/CreationModal';
-import { MarketItem } from '../components/MarketItem';
-import { MarketItemType } from '../_types/model';
+import { CreationModal } from '../../components/modals/CreationModal';
+import { MarketItem } from '../../components/MarketItem';
+import { MarketItemType } from '../../_types/model';
 
-import './index.scss';
-import ViewItemModal from '../components/modals/ViewItemModal';
+import './Home.scss';
+import ViewItemModal from '../../components/modals/ViewItemModal';
+import Lnk from '../../components/Lnk';
 
-const IndexPage: React.FC = () => {
+const HomePage: React.FC = () => {
   const [modal, setModal] = useState<{ show: boolean; edit?: MarketItemType }>({
     show: false,
   });
@@ -53,9 +54,9 @@ const IndexPage: React.FC = () => {
         <title>Home Page</title>
         <ul className="items_list">
           <div className="market_item_i">
-            <a className="add_new" onClick={() => setModal({ show: true })}>
+            <Lnk className="add_new" onClick={() => setModal({ show: true })}>
               <span>+ Créer une nouvelle offre</span>
-            </a>
+            </Lnk>
           </div>
           {items.map((item, i) => (
             <MarketItem
@@ -87,4 +88,4 @@ const IndexPage: React.FC = () => {
   );
 };
 
-export default IndexPage;
+export default HomePage;

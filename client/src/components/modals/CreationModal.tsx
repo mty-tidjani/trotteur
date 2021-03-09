@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MarketItemType } from '../../_types/model';
 import { BaseModal } from './BaseModal';
+import { http } from '../../_utils/http';
+
 import './CreationModal.scss';
+import { MARKET_ITEMS } from '../../_utils/end.points';
 
 type CreationModalProps = {
   edit?: MarketItemType;
@@ -9,11 +12,32 @@ type CreationModalProps = {
   onClose: () => void;
 };
 
+type CreateState = {
+  title: string,
+  price: number,
+}
 export const CreationModal: React.FC<CreationModalProps> = ({
   show,
   onClose,
   edit,
 }) => {
+
+  const [state, setState] = useState<CreateState>({
+    title: edit ? edit.title : '',
+    price: edit ? edit.price : 0
+  });
+  const [file, setFile] = useState<File|undefined>();
+
+  const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    //Validate data
+  }
+
+
+  const sendData = () => {
+    http.post(MARKET_ITEMS)
+  }
+
   return (
     <BaseModal
       show={show}
@@ -23,9 +47,7 @@ export const CreationModal: React.FC<CreationModalProps> = ({
     >
       <form
         action="#"
-        onSubmit={(e) => {
-          e.preventDefault();
-        }}
+        onSubmit={submitForm}
         className="modal_create_edit"
       >
         <div className="input_group">

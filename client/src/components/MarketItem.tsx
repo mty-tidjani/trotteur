@@ -1,6 +1,8 @@
 import React from 'react';
+import { assets } from '../assets';
 import { MarketItemType } from '../_types/model';
 import { strRandom } from '../_utils/helpers';
+import Lnk from './Lnk';
 import './MarketItem.scss';
 
 type MarketItemProps = {
@@ -28,22 +30,21 @@ export const MarketItem: React.FC<MarketItemProps> = ({
             }, 100);
           }}
         >
-          <img src="/cog.svg" alt="" />
+          <img src={assets.cog} alt="" />
         </button>
         <div className="dropdown_menu">
-          <a href="#" onClick={onEdit}>
-            <img src="/pen.svg" alt="" /> Modifier
-          </a>
-          <a href="#" onClick={onDelete}>
-            <img src="/delete.svg" alt="" /> Supprimer deffinitivement
-          </a>
+          <Lnk onClick={onEdit}>
+            <img src={assets.pen} alt="" /> Modifier
+          </Lnk>
+          <Lnk onClick={onDelete}>
+            <img src={assets.delet} alt="" /> Supprimer deffinitivement
+          </Lnk>
         </div>
       </div>
-      <a onClick={onView}>
+      <Lnk onClick={onView}>
         <div className="img_container">
           <div className="img_overlay" />
-          {/* <img src={marketItem.image} alt=""/> */}
-          <img src={'/braaaa.jpeg'} alt="" />
+          <img src={marketItem.image} alt=""/>
         </div>
         <div className="texts">
           <h2 className="wrap_tittle">{marketItem.title}</h2>
@@ -52,7 +53,7 @@ export const MarketItem: React.FC<MarketItemProps> = ({
             {marketItem.price} €
           </h3>
         </div>
-      </a>
+      </Lnk>
     </div>
   );
 };
