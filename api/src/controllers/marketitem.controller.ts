@@ -12,17 +12,18 @@ export class MarketItemController {
     req: Request,
     res: Response
   ): Promise<unknown> => {
-    const { title, price } = req.body;
-
-    const markIt = new MarketItem({
-      title,
-      price,
-      url: '/img/' + req.file.filename,
-    });
-
-    await markIt.save()
-    
+    const { title, price } = req.body;    
     try {
+      const markIt = new MarketItem({
+        title,
+        price,
+        url: '/img/' + req.file.filename,
+      });
+      console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
+      
+  
+      await markIt.save()
+
       return sendResp(res, SUCCESS.MI_CREATED, markIt);
     } catch (err) {
       return handleError(res, err);
@@ -34,17 +35,19 @@ export class MarketItemController {
     res: Response
   ): Promise<unknown> => {
     const { title, price, _id } = req.body;
-
-    const item = await MarketItem.findById(_id);
-    if (!item) return sendResp(res, ERROR.ITEM_NOT_FOUND);
-
-    item.title = title ? title : item.title;
-    item.price = price ? price : item.price;
-    item.url = req.file?.filename ? '/img/' + req.file.filename : item.url;
-
-    await item.save()
     
     try {
+      const item = await MarketItem.findById(_id);
+      if (!item) return sendResp(res, ERROR.ITEM_NOT_FOUND);
+  
+      item.title = title ? title : item.title;
+      item.price = price ? price : item.price;
+      item.url = req.file?.filename ? '/img/' + req.file.filename : item.url;
+  
+      await item.save();
+      console.log('yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy');
+      
+
       return sendResp(res, SUCCESS.MI_UPDATED, item);
     } catch (err) {
       return handleError(res, err);
@@ -55,16 +58,18 @@ export class MarketItemController {
     req: Request,
     res: Response
   ): Promise<unknown> => {
-    const { title, price, _id } = req.body;
+    const { miId } = req.params;
 
-    const item = await MarketItem.findById(_id);
-    if (!item) return sendResp(res, ERROR.ITEM_NOT_FOUND);
-
-    item.scd = marketItemSCD.deleted;
-
-    await item.save();
-    
     try {
+
+      const item = await MarketItem.findById(miId);
+      
+      if (!item) return sendResp(res, ERROR.ITEM_NOT_FOUND);
+
+      item.scd = marketItemSCD.deleted;
+
+      await item.save();
+    
       return sendResp(res, SUCCESS.MI_DELETED, item);
     } catch (err) {
       return handleError(res, err);

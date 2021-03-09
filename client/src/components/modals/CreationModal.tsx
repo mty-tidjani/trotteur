@@ -5,12 +5,12 @@ import { http } from '../../_utils/http';
 
 import './CreationModal.scss';
 import { baseUrl, MARKET_ITEMS } from '../../_utils/end.points';
-import { error } from 'console';
 
 type CreationModalProps = {
   edit?: MarketItemType;
   show: boolean;
   onClose: () => void;
+  onDone: (item: MarketItemType) => void;
 };
 
 type CreateState = {
@@ -21,6 +21,7 @@ export const CreationModal: React.FC<CreationModalProps> = ({
   show,
   onClose,
   edit,
+  onDone,
 }) => {
   const [state, setState] = useState<CreateState>({ title: '', price: 0});
 
@@ -68,27 +69,28 @@ export const CreationModal: React.FC<CreationModalProps> = ({
     fd.append('title', state.title );
     fd.append('_id', edit?._id || '');
 
-    let qry = http.post(MARKET_ITEMS, fd, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      }
-    });
-
     if (edit?._id) {
       // put
-      qry = http.put(MARKET_ITEMS, fd, {
+      http.put(MARKET_ITEMS, fd, {
         headers: {
           "Content-Type": "multipart/form-data",
         }
+      }).then(res => {
+        onDone(res.data.result);
+      }).catch(err => {
+        // Todo do semthing with this error
       })
+    }else{
+      http.post(MARKET_ITEMS, fd, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        }
+      }).then(res => {
+        onDone(res.data.result);
+      }).catch(err => {
+        // Todo do semthing with this error
+      });
     }
-
-    qry.then(res => {
-      console.log(res.data);
-    }).catch(err => {
-      // Todo do semthing with this error
-    })
-    
   }
 
   return (

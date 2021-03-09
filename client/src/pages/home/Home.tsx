@@ -6,6 +6,8 @@ import { MarketItemType } from '../../_types/model';
 import './Home.scss';
 import ViewItemModal from '../../components/modals/ViewItemModal';
 import Lnk from '../../components/Lnk';
+import { http } from '../../_utils/http';
+import { MARKET_ITEMS } from '../../_utils/end.points';
 
 const HomePage: React.FC = () => {
   const [modal, setModal] = useState<{ show: boolean; edit?: MarketItemType }>({
@@ -48,6 +50,14 @@ const HomePage: React.FC = () => {
     return () => window.removeEventListener('click', evnt);
   }, []);
 
+  const deleteItem = (_id: string) => {
+      http.delete(MARKET_ITEMS + '/' + _id).then(res => {
+          if (res.data.success) {
+            setItems(items.filter((x) => x._id !== _id));
+          }
+      })
+  }
+
   return (
     <>
       <main id="index_main_">
@@ -63,9 +73,7 @@ const HomePage: React.FC = () => {
               key={i}
               marketItem={item}
               onEdit={() => setModal({ edit: item, show: true })}
-              onDelete={() => {
-                setItems(items.filter((x) => x._id !== item._id));
-              }}
+              onDelete={() => deleteItem(item._id)}
               onView={() => {
                 setView({ show: true, item });
               }}
@@ -76,6 +84,16 @@ const HomePage: React.FC = () => {
 
       <CreationModal
         onClose={() => setModal({ show: false, edit: undefined })}
+        onDone={(item) =>  {
+            const index = items.findIndex(x => x._id == item._id);
+            if (index >= 0) {
+                items[index] = item;
+            }else{
+                items.push(item);
+            }
+            setItems(items);
+            setModal({ show: false, edit: undefined })
+        }}
         show={modal.show}
         edit={modal.edit}
       />
