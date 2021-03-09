@@ -1,4 +1,4 @@
-import { validator, checkBody, checkEmail } from "../../_middlewares";
+import { validator, checkBody, checkEmail, checkMongoId } from "../../_middlewares";
 import path from "path";
 import multer from "multer";
 
@@ -29,3 +29,5 @@ const storage = (dirName = "/../../../uploads/images") => multer.diskStorage({
   export const uploadFile = multer({ storage: storage() });
 
   export const create = [checkBody("title"), checkBody("price"), validator];
+
+  export const update = [checkBody("title"), checkBody("price"), checkMongoId("_id"), validator];

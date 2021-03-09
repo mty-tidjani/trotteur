@@ -26,5 +26,7 @@ export class MarketItemRoutes extends BaseRoute {
     this.router.get("/", MarketItemController.getAll);
     // Create
     this.router.post("/", mdwr.uploadFile.single("file"), mdwr.create, MarketItemController.create);
+
+    this.router.put("/", mdwr.uploadFile.single("file"), mdwr.create, MarketItemController.update);
   }
 }

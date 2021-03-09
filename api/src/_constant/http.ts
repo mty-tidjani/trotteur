@@ -39,6 +39,8 @@ export const SUCCESS = {
   DEFAULT: succes(),
   ACCOUNT_CREATED: succes("Account created!", HTTP_CODE.CREATED),
   MI_CREATED: succes("MarketItem created!", HTTP_CODE.CREATED),
+  MI_DELETED: succes("MarketItem deleted!", HTTP_CODE.OK),
+  MI_UPDATED: succes("MarketItem Updated!", HTTP_CODE.OK),
 };
 
 export const ERROR = {
@@ -52,4 +54,6 @@ export const ERROR = {
     HTTP_CODE.OK,
     12
   ),
+  ITEM_NOT_FOUND: error("Market item not found!", HTTP_CODE.OK, HTTP_CODE.URL_NOT_FOUND),
+  BAD_REQUEST: error("Some request params are invalid!", HTTP_CODE.BAD_REQUEST, HTTP_CODE.BAD_REQUEST),
 };

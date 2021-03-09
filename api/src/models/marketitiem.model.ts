@@ -2,6 +2,7 @@ import { Schema, model, Document } from "mongoose";
 import { MODEL } from "../_constant";
 
 export interface IMarketItem extends Document {
+  scd: string; // Staus code to indicate if entry is deleted
   title: string;
   price: number;
   image: string;
@@ -10,6 +11,7 @@ export interface IMarketItem extends Document {
 
 const marketSchema: Schema<IMarketItem> = new Schema(
   {
+    scd: { type: String },
     title: { type: String },
     price: { type: Number },
     image: { type: String },

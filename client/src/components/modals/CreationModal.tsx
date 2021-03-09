@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MarketItemType } from '../../_types/model';
 import { BaseModal } from './BaseModal';
 import { http } from '../../_utils/http';
 
 import './CreationModal.scss';
-import { MARKET_ITEMS } from '../../_utils/end.points';
+import { baseUrl, MARKET_ITEMS } from '../../_utils/end.points';
 import { error } from 'console';
 
 type CreationModalProps = {
@@ -22,11 +22,8 @@ export const CreationModal: React.FC<CreationModalProps> = ({
   onClose,
   edit,
 }) => {
+  const [state, setState] = useState<CreateState>({ title: '', price: 0});
 
-  const [state, setState] = useState<CreateState>({
-    title: edit ? edit.title : '',
-    price: edit ? edit.price : 0
-  });
   const [file, setFile] = useState<{
     file: File|null|undefined,
     src: string|undefined
@@ -37,13 +34,20 @@ export const CreationModal: React.FC<CreationModalProps> = ({
     file: false
   })
 
+  useEffect(() => {
+    setState({
+      title: edit?.title ? edit.title : '',
+      price: edit?.price ? edit.price : 0
+    })
+  }, [edit])
+
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { title, price } = state;
     const errs: any = {}; 
     errs.price = !price || price < 0;
     errs.title = !title.trim();
-    errs.file = !file?.src;
+    errs.file = !file?.src && !edit?.url;
 
     setErrors(errs);
 
@@ -56,19 +60,35 @@ export const CreationModal: React.FC<CreationModalProps> = ({
 
   const sendData = () => {
     const fd = new FormData();
-    const f: any = file?.file; // file.file can't be null at this point
-    fd.append('file', f, f.filename)
+    if (file?.file) {
+      const f: any = file.file;
+      fd.append('file', f, f.filename)
+    }
     fd.append('price', String(state.price))
-    fd.append('title', state.title)
-    http.post(MARKET_ITEMS, fd, {
+    fd.append('title', state.title );
+    fd.append('_id', edit?._id || '');
+
+    let qry = http.post(MARKET_ITEMS, fd, {
       headers: {
-	      "Content-Type": "multipart/form-data",
-	    }
-    }).then(res => {
+        "Content-Type": "multipart/form-data",
+      }
+    });
+
+    if (edit?._id) {
+      // put
+      qry = http.put(MARKET_ITEMS, fd, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        }
+      })
+    }
+
+    qry.then(res => {
       console.log(res.data);
     }).catch(err => {
       // Todo do semthing with this error
     })
+    
   }
 
   return (
@@ -112,7 +132,7 @@ export const CreationModal: React.FC<CreationModalProps> = ({
         <div className="form_group">
           <div className="image_preview">
             {file?.src && <img src={file.src} alt="" />}
-            {!file?.src && edit?.image && <img src={edit.image} alt="" />}
+            {!file?.src && edit?.url && <img src={baseUrl + edit.url} alt="" />}
           </div>
           <input type="file" name="images" id="img_up" hidden
           accept="image/x-png,image/gif,image/jpeg"
