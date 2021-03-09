@@ -1,5 +1,6 @@
 export type MarketItemType = {
-    title: string,
-    price: number,
-    image: string;
-}
+  _id: string;
+  title: string;
+  price: number;
+  image: string;
+};

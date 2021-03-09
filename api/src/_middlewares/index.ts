@@ -1,3 +1,3 @@
-export * from './validator';
-export * from './validations';
-export * from './jwt.middleware';
+export * from "./validator";
+export * from "./validations";
+export * from "./jwt.middleware";

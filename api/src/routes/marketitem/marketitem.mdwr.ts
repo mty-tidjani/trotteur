@@ -1,12 +1,3 @@
-import {
-  validator,
-  checkBody,
-  checkEmail,
-} from '../../_middlewares';
+import { validator, checkBody, checkEmail } from "../../_middlewares";
 
-
-export const create = [
-  checkEmail('title'),
-  checkBody('price'),
-  validator,
-];
+export const create = [checkEmail("title"), checkBody("price"), validator];

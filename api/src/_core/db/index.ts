@@ -1,5 +1,5 @@
-import { connect } from 'mongoose';
-import config from '../config';
+import { connect } from "mongoose";
+import config from "../config";
 
 const dbConnect = (): Promise<unknown> => {
   const { url: MONGO_URL } = config.mongo;
@@ -9,13 +9,15 @@ const dbConnect = (): Promise<unknown> => {
       useFindAndModify: true,
       useNewUrlParser: true,
       useUnifiedTopology: true,
-    }).then(() => {
-      console.info('Database pluged in');
-      res(undefined);
-    }).catch((err) => {
-      console.error('Database not in!', MONGO_URL);
-      rej(err);
-    });
+    })
+      .then(() => {
+        console.info("Database pluged in");
+        res(undefined);
+      })
+      .catch((err) => {
+        console.error("Database not in!", MONGO_URL);
+        rej(err);
+      });
   });
 };
 

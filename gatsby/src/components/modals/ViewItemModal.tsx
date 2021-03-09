@@ -15,8 +15,7 @@ const ViewItemModal: React.FC<ViewItemModalProps> = ({
   onClose,
 }) => {
   return (
-    <BaseModal show={show} onClose={onClose}
-      className="item_viewer">
+    <BaseModal show={show} onClose={onClose} className="item_viewer">
       <div className="">
         {/* <img src={marketItem.image} alt=""/> */}
         <div className="img_holder">

@@ -1,15 +1,12 @@
-
-import { Router } from 'express';
-
+import { Router } from "express";
 
 export abstract class BaseRoute {
   /**
-     * Constructor
-     *
-     * @class BaseRoute
-     * @constructor
-     */
+   * Constructor
+   *
+   * @class BaseRoute
+   * @constructor
+   */
 
-    protected router = Router();
-
+  protected router = Router();
 }

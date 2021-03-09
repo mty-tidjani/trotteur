@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { CreationModal } from '../components/modals/CreationModal';
 import { MarketItem } from '../components/MarketItem';
 import { MarketItemType } from '../_types/model';
-import { marketItems } from '../_utils/faker';
+
 import './index.scss';
 import ViewItemModal from '../components/modals/ViewItemModal';
 
@@ -13,8 +13,24 @@ const IndexPage: React.FC = () => {
   const [view, setView] = useState<{ show: boolean; item?: MarketItemType }>({
     show: false,
   });
-  const [items, setItems] = useState(marketItems);
+  const [items, setItems] = useState<MarketItemType[]>([]);
+
+  const getItems = () => {
+    fetch('http://localhost:4040/api/marketitems')
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        setItems(res.result);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
   useEffect(() => {
+    getItems();
+
     const evnt = () => {
       const dropdowns = document.getElementsByClassName('drop_down');
       let i;
@@ -47,7 +63,7 @@ const IndexPage: React.FC = () => {
               marketItem={item}
               onEdit={() => setModal({ edit: item, show: true })}
               onDelete={() => {
-                setItems(items.filter((x) => x.title !== item.title));
+                setItems(items.filter((x) => x._id !== item._id));
               }}
               onView={() => {
                 setView({ show: true, item });

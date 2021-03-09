@@ -30,15 +30,30 @@ export const CreationModal: React.FC<CreationModalProps> = ({
       >
         <div className="input_group">
           <label htmlFor="title2">Title *</label>
-          <input type="text" id="title2" name="title2" autoComplete="off" />
+          <input
+            defaultValue={edit?.title}
+            type="text"
+            id="title2"
+            name="title2"
+            autoComplete="off"
+          />
         </div>
 
         <div className="input_group">
           <label htmlFor="price">Price *</label>
-          <input type="number" id="price" name="price" autoComplete="off" />
+          <input
+            defaultValue={edit?.price}
+            type="number"
+            id="price"
+            name="price"
+            autoComplete="off"
+          />
         </div>
 
         <div className="form_group">
+          <div className="image_preview">
+            {edit?.image && <img src={edit.image} alt="" />}
+          </div>
           <input type="file" name="images" id="img_up" hidden />
           <button
             type="button"
@@ -50,7 +65,9 @@ export const CreationModal: React.FC<CreationModalProps> = ({
         </div>
 
         <div className="form_group center">
-          <button type="submit">{edit ? 'Edit Item' : 'Add Item'}</button>
+          <button className="send_btn" type="submit">
+            {edit ? 'Edit Item' : 'Add Item'}
+          </button>
         </div>
       </form>
     </BaseModal>

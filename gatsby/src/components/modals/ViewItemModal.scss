@@ -8,24 +8,23 @@
     padding: 0px 4px 0px 2px;
   }
 
-  .modal_content{
-      padding: 0;
+  .modal_content {
+    padding: 0;
 
-      img{
-          height: 300px;
-          width: 100%;
-          object-fit: cover;
+    img {
+      height: 300px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .item_body {
+      padding: 25px;
+      text-align: center;
+
+      .title {
+        font-weight: bold;
+        margin-bottom: 15px;
       }
-
-      .item_body {
-          padding: 25px;
-          text-align: center;
-
-          .title{
-              font-weight: bold;
-              margin-bottom: 15px;
-          }
-      }
+    }
   }
-
 }

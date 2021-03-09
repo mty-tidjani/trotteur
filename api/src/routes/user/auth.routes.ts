@@ -1,11 +1,11 @@
 //this is the admin router file
-import { BaseRoute } from '../base.routes';
-import { AuthController } from '../../controllers/auth.controller';
-import * as mdwr from './user.mdwr';
-import { Router } from 'express';
+import { BaseRoute } from "../base.routes";
+import { AuthController } from "../../controllers/auth.controller";
+import * as mdwr from "./user.mdwr";
+import { Router } from "express";
 
 export class AuthRoutes extends BaseRoute {
-  public static path = '/auth';
+  public static path = "/auth";
   private static instance: AuthRoutes;
 
   private constructor() {
@@ -22,9 +22,8 @@ export class AuthRoutes extends BaseRoute {
 
   private async init() {
     // userSignup
-    this.router.post('/signup', mdwr.signup, AuthController.signup);
+    this.router.post("/signup", mdwr.signup, AuthController.signup);
     // user signin
-    this.router.post('/signin', mdwr.signin, AuthController.signin);
-  
+    this.router.post("/signin", mdwr.signin, AuthController.signin);
   }
 }

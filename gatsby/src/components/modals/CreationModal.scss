@@ -32,4 +32,21 @@
     font-weight: bold;
     outline: none;
   }
+
+  .send_btn {
+    background-color: rgb(255, 101, 30);
+    padding: 10px;
+    width: 50%;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    outline: none;
+    margin-top: 20px;
+  }
+
+  .image_preview img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+  }
 }

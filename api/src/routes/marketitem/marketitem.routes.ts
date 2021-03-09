@@ -1,12 +1,12 @@
 //this is the admin router file
-import { BaseRoute } from '../base.routes';
-import { MarketItemController } from '../../controllers/marketitem.controller';
-import * as mdwr from './marketitem.mdwr';
-import { Router } from 'express';
-import { jwtAuthVerify } from '../../_middlewares';
+import { BaseRoute } from "../base.routes";
+import { MarketItemController } from "../../controllers/marketitem.controller";
+import * as mdwr from "./marketitem.mdwr";
+import { Router } from "express";
+import { jwtAuthVerify } from "../../_middlewares";
 
 export class MarketItemRoutes extends BaseRoute {
-  public static path = '/marketitems';
+  public static path = "/marketitems";
   private static instance: MarketItemRoutes;
 
   private constructor() {
@@ -23,8 +23,8 @@ export class MarketItemRoutes extends BaseRoute {
 
   private async init() {
     // LIST
-    this.router.get('/', MarketItemController.getAll);
+    this.router.get("/", MarketItemController.getAll);
     // Create
-    this.router.post('/', mdwr.create, MarketItemController.create);
+    this.router.post("/", mdwr.create, MarketItemController.create);
   }
 }

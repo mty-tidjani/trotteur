@@ -5,12 +5,17 @@ import { RichRequest } from "../_types/common";
 import { sendResp, handleError } from "../_utils/response";
 import { jwtTokenDecoder } from "../_utils/jwt.utils";
 
-export const jwtAuthVerify = async (req: RichRequest, res: Response, next: NextFunction): Promise<unknown> => {
-  try {    
-    const token = req.headers['authorization'];
-    if (!token || !token.startsWith('Bearer ')) return sendResp(res, ERROR.JWT_TOKEN_INVALID, {});
+export const jwtAuthVerify = async (
+  req: RichRequest,
+  res: Response,
+  next: NextFunction
+): Promise<unknown> => {
+  try {
+    const token = req.headers["authorization"];
+    if (!token || !token.startsWith("Bearer "))
+      return sendResp(res, ERROR.JWT_TOKEN_INVALID, {});
 
-    const tokenValue = token.replace('Bearer ', '');
+    const tokenValue = token.replace("Bearer ", "");
     if (tokenValue.trim()) {
       const data = jwtTokenDecoder(tokenValue);
       if (data.success) {
@@ -20,7 +25,7 @@ export const jwtAuthVerify = async (req: RichRequest, res: Response, next: NextF
           return next();
         }
       }
-    } 
+    }
     return sendResp(res, ERROR.JWT_TOKEN_INVALID, {});
   } catch (err) {
     return handleError(res, err, {});
