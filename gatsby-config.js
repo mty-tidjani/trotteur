@@ -1,16 +1,20 @@
 module.exports = {
-  siteMetadata: {
-    title: "Coq Trotteur Test",
-  },
-  plugins: [
-    "gatsby-plugin-sass",
-    {
-      resolve: "gatsby-plugin-google-analytics",
-      options: {
-        trackingId: "xxxxxxx",
-      },
+    siteMetadata: {
+        title: 'Coq Trotteur Test',
     },
-    "gatsby-plugin-react-helmet",
-    "gatsby-plugin-sitemap",
-  ],
+    plugins: [
+        {
+            resolve: 'gatsby-plugin-sass',
+            options: {
+                implementation: require('node-sass'),
+            },
+        },
+        {
+            resolve: 'gatsby-plugin-google-analytics',
+            options: {
+                trackingId: 'xxxxxxx',
+            },
+        },
+        'gatsby-plugin-react-helmet',
+    ],
 };
