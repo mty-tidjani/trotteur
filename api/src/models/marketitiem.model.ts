@@ -5,6 +5,7 @@ export interface IMarketItem extends Document {
   title: string;
   price: number;
   image: string;
+  url: string;
 }
 
 const marketSchema: Schema<IMarketItem> = new Schema(
@@ -12,6 +13,7 @@ const marketSchema: Schema<IMarketItem> = new Schema(
     title: { type: String },
     price: { type: Number },
     image: { type: String },
+    url: { type: String },
   },
   {
     versionKey: false,

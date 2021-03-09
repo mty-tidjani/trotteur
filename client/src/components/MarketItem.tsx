@@ -2,6 +2,7 @@ import React from 'react';
 import { assets } from '../assets';
 import { MarketItemType } from '../_types/model';
 import { strRandom } from '../_utils/helpers';
+import { baseUrl } from '../_utils/end.points';
 import Lnk from './Lnk';
 import './MarketItem.scss';
 
@@ -44,7 +45,7 @@ export const MarketItem: React.FC<MarketItemProps> = ({
       <Lnk onClick={onView}>
         <div className="img_container">
           <div className="img_overlay" />
-          <img src={marketItem.image} alt=""/>
+          <img src={marketItem.image ? marketItem.image : baseUrl + marketItem.url} alt=""/>
         </div>
         <div className="texts">
           <h2 className="wrap_tittle">{marketItem.title}</h2>

@@ -7,6 +7,7 @@ import path from "path";
 import http from "http";
 import dbConnect from "./_core/db";
 import { migrateData } from "./_core/db/migrate";
+import { ImgRoutes } from "./routes/img.routes";
 
 class App {
   public app: express.Application;
@@ -16,7 +17,7 @@ class App {
     this.app = express();
     this.server = new http.Server(this.app);
     dbConnect().then(() => {
-      migrateData();
+      // migrateData();
     });
     this.routes();
   }
@@ -28,6 +29,7 @@ class App {
 
     //routes
     this.app.use(ApiRoutes.path, ApiRoutes.router);
+    this.app.use(ImgRoutes.path, ImgRoutes.router);
 
     this.app.use((_req, res) => {
       res.status(404).json({

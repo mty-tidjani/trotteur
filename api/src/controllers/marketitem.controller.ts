@@ -12,9 +12,17 @@ export class MarketItemController {
     res: Response
   ): Promise<unknown> => {
     const { title, price } = req.body;
-    // const email = sanitizeEmail(eml);
+
+    const markIt = new MarketItem({
+      title,
+      price,
+      url: '/img/' + req.file.filename,
+    });
+
+    await markIt.save()
+    
     try {
-      return sendResp(res, SUCCESS.MI_CREATED, {});
+      return sendResp(res, SUCCESS.MI_CREATED, markIt);
     } catch (err) {
       return handleError(res, err);
     }
@@ -25,7 +33,7 @@ export class MarketItemController {
     res: Response
   ): Promise<unknown> => {
     try {
-      const all = await MarketItem.find({});
+      const all = await MarketItem.find({}).limit(2);
 
       return sendResp(res, SUCCESS.DEFAULT, all);
     } catch (err) {
