@@ -8,7 +8,7 @@ import path from 'path';
 import http from 'http';
 import dbConnect from './_core/db';
 import { migrateData } from './_core/db/migrate';
-// import { socketInit } from './v1/services';
+
 class App {
   public app: express.Application;
   public server: http.Server;
