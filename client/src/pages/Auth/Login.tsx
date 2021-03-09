@@ -29,7 +29,6 @@ const Login: React.FC<LoginProps> = ({ switchi }) => {
       .then((res) => {
         const { data } = res;
         if (data.success) {
-          console.log(res.data.result);
           StorageManager.setUserData(res.data.result.user)
           StorageManager.setUserToken(res.data.result.token)
           setTimeout(() => {
