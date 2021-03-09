@@ -47,7 +47,7 @@ const IndexPage: React.FC = () => {
               marketItem={item}
               onEdit={() => setModal({ edit: item, show: true })}
               onDelete={() => {
-                setItems(items.filter(x => x.title !== item.title));
+                setItems(items.filter((x) => x.title !== item.title));
               }}
               onView={() => {
                 setView({ show: true, item });
@@ -62,10 +62,11 @@ const IndexPage: React.FC = () => {
         show={modal.show}
         edit={modal.edit}
       />
-      <ViewItemModal 
+      <ViewItemModal
         show={view.show}
         onClose={() => setView({ show: false, item: undefined })}
-        marketItem={view.item} />
+        marketItem={view.item}
+      />
     </>
   );
 };

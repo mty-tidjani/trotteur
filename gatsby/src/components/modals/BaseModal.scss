@@ -1,4 +1,4 @@
-.modal_base{
+.modal_base {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -7,7 +7,7 @@
   z-index: 2;
   display: flex;
 
-  .back_drop{
+  .back_drop {
     background: #000;
     position: absolute;
     width: 100%;
@@ -15,7 +15,7 @@
     opacity: 0.4;
   }
 
-  .modal_content{
+  .modal_content {
     background: #fff;
     align-items: center;
     justify-content: center;
@@ -26,7 +26,7 @@
     border-radius: 5px;
     position: relative;
 
-    .close_btn{
+    .close_btn {
       position: absolute;
       right: -5px;
       top: -11px;
@@ -38,15 +38,13 @@
       cursor: pointer;
       border-radius: 5px;
 
-      &:hover{
+      &:hover {
         background-color: red;
       }
     }
 
-    .title{
+    .title {
       text-align: center;
     }
-
   }
-  
 }

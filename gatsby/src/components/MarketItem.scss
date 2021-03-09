@@ -56,8 +56,9 @@
     display: inline-block;
     border-radius: 15px;
     margin: 10px;
-    width: 90%;
+    width: 96%;
     border: 1px solid #eee;
+    background-color: #fff;
     height: 260px;
     cursor: pointer;
     transition: box-shadow 0.4s;
@@ -122,10 +123,11 @@
 
       strong {
         color: #000;
-        background: #f0f0f0;
+        background: #d4d4d4;
         display: inline-block;
         border-radius: 10px;
         margin-right: 10px;
+        padding: 0px 4px 0px 2px;
       }
     }
   }

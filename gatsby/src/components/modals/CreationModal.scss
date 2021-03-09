@@ -17,14 +17,14 @@
       outline: none;
       width: 100%;
 
-      &:focus-within{
+      &:focus-within {
         box-shadow: 0px 0px 6px 0px dodgerblue;
         border-color: dodgerblue;
       }
     }
   }
 
-  .file_btn{
+  .file_btn {
     background-color: dodgerblue;
     padding: 10px;
     border: none;

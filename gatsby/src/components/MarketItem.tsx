@@ -14,7 +14,7 @@ export const MarketItem: React.FC<MarketItemProps> = ({
   marketItem,
   onEdit,
   onDelete,
-  onView
+  onView,
 }) => {
   const id = strRandom(5);
   return (
@@ -26,7 +26,6 @@ export const MarketItem: React.FC<MarketItemProps> = ({
             setTimeout(() => {
               document.getElementById(id)?.classList.toggle('show');
             }, 100);
-                
           }}
         >
           <img src="/cog.svg" alt="" />
