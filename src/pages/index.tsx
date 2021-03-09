@@ -4,9 +4,13 @@ import { MarketItem } from '../components/MarketItem';
 import { MarketItemType } from '../_types/model';
 import { marketItems } from '../_utils/faker';
 import './index.scss';
+import ViewItemModal from '../components/modals/ViewItemModal';
 
 const IndexPage: React.FC = () => {
   const [modal, setModal] = useState<{ show: boolean; edit?: MarketItemType }>({
+    show: false,
+  });
+  const [view, setView] = useState<{ show: boolean; item?: MarketItemType }>({
     show: false,
   });
   const [items, setItems] = useState(marketItems);
@@ -45,15 +49,23 @@ const IndexPage: React.FC = () => {
               onDelete={() => {
                 setItems(items.filter(x => x.title !== item.title));
               }}
+              onView={() => {
+                setView({ show: true, item });
+              }}
             />
           ))}
         </ul>
       </main>
+
       <CreationModal
         onClose={() => setModal({ show: false, edit: undefined })}
         show={modal.show}
         edit={modal.edit}
       />
+      <ViewItemModal 
+        show={view.show}
+        onClose={() => setView({ show: false, item: undefined })}
+        marketItem={view.item} />
     </>
   );
 };

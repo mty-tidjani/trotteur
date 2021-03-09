@@ -1,4 +1,56 @@
 .market_item_i {
+  position: relative;
+
+  .drop_down {
+    position: absolute;
+    right: 22px;
+    top: 20px;
+    z-index: 1;
+
+    .menu_toggle {
+      background: #fff;
+      padding: 6px 4px 2px;
+      border-radius: 7px;
+      border: 1px solid #ddd;
+      outline: none;
+    }
+
+    .dropdown_menu {
+      background: #fff;
+      position: absolute;
+      width: -webkit-max-content;
+      width: max-content;
+      padding: 3px 0;
+      border-radius: 5px;
+      display: none;
+      transform: translate(-221px, 4px);
+      box-shadow: 0px 0px 4px 0px #0006;
+
+      a {
+        display: block;
+        text-decoration: none;
+        color: #000;
+        padding: 5px 10px;
+        display: flex;
+        align-items: center;
+        font-size: 15px;
+
+        &:hover {
+          background-color: #eee;
+        }
+
+        img {
+          width: 25px;
+          padding: 4px;
+        }
+      }
+    }
+
+    &.show .dropdown_menu {
+      display: block;
+    }
+  }
+
   > a {
     display: block;
     display: inline-block;
@@ -9,6 +61,7 @@
     height: 260px;
     cursor: pointer;
     transition: box-shadow 0.4s;
+    position: relative;
 
     &:hover {
       box-shadow: 0 4px 16px 0#1c1e381f;
@@ -44,58 +97,6 @@
       object-fit: cover;
       border-radius: 10px 10px 0 0;
     }
-
-    .drop_down {
-        position: absolute;
-        right: 7px;
-        top: 7px;
-        z-index: 1;
-
-        .menu_toggle {
-            background: #fff;
-            padding: 6px 4px 2px;
-            border-radius: 7px;
-            border: 1px solid #DDD;
-            outline: none;
-        }
-
-        .dropdown_menu{
-            background: #fff;
-            position: absolute;
-            width: -webkit-max-content;
-            width: max-content;
-            padding: 3px 0;
-            border-radius: 5px;
-            display: none;
-            transform: translate(-221px, 4px);
-            box-shadow: 0px 0px 4px 0px #0006;
-        
-
-            a{
-                display: block;
-                text-decoration: none;
-                color: #000;
-                padding: 5px 10px;
-                display: flex;
-                align-items: center;
-                font-size: 15px;
-
-                &:hover {
-                    background-color: #eee;
-                }
-
-                img {
-                    width: 25px;
-                    padding: 4px;
-                }
-            }
-        }
-
-        &.show .dropdown_menu {
-            display: block;
-        }
-    }
-    
   }
 
   .texts {
@@ -121,12 +122,15 @@
 
       strong {
         color: #000;
+        background: #f0f0f0;
+        display: inline-block;
+        border-radius: 10px;
+        margin-right: 10px;
       }
     }
   }
 }
 
-  
 @media (max-width: 768px) {
   .market_item_i {
     width: 100%;
