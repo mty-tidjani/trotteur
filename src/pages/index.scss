@@ -1,16 +1,27 @@
+@font-face {
+    font-family: "montserrat";
+    src: url("../fonts/montserrat.ttf");
+}
+
 body{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "montserrat", sans-serif;
 
     *{
         box-sizing: border-box;
     }
 }
+
+body.modal{
+    overflow: hidden;
+}
+
 img{
     max-width: 100%;
 }
 li{
     list-style: none;
 }
+
 #index_main_ {
     color: hsl(255, 11%, 15%);
     padding: 2%;
@@ -21,5 +32,23 @@ li{
         max-width: 982px;
         margin: auto;
         padding: 0;
+
+        .add_new span{
+            background-color: #66A3FF;
+            color: #fff;
+            font-weight: 600;
+            height: 100%;
+            margin: 6px;
+            border-radius: 5px;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            padding: 38px;
+            text-align: center;
+        }
     }
+}
+
+.center{
+    text-align: center;
 }

@@ -5,9 +5,15 @@ import './MarketItem.scss';
 
 type MarketItemProps = {
   marketItem: MarketItemType;
+  onEdit: () => void
+  onDelete: () => void
 };
 
-export const MarketItem: React.FC<MarketItemProps> = ({ marketItem }) => {
+export const MarketItem: React.FC<MarketItemProps> = ({
+  marketItem,
+  onEdit,
+  onDelete
+}) => {
   const id = strRandom(5);
   return (
     <div className="market_item_i">
@@ -26,10 +32,10 @@ export const MarketItem: React.FC<MarketItemProps> = ({ marketItem }) => {
               <img src="/cog.svg" alt="" />
             </button>
             <div className="dropdown_menu">
-              <a href="#">
+              <a href="#" onClick={onEdit}>
                 <img src="/pen.svg" alt="" /> Modifier
               </a>
-              <a href="#">
+              <a href="#" onClick={onDelete}>
                 <img src="/delete.svg" alt="" /> Supprimer deffinitivement
               </a>
             </div>

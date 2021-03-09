@@ -62,12 +62,14 @@
         .dropdown_menu{
             background: #fff;
             position: absolute;
+            width: -webkit-max-content;
             width: max-content;
             padding: 3px 0;
             border-radius: 5px;
             display: none;
-            transform: translateX(-191px);
-            box-shadow: 0px 0px 10px 0px #0006;
+            transform: translate(-221px, 4px);
+            box-shadow: 0px 0px 4px 0px #0006;
+        
 
             a{
                 display: block;
@@ -105,10 +107,10 @@
 
     h2 {
       flex: 1 1;
-      max-height: 43px;
-      min-height: 43px;
+      max-height: 55px;
+      min-height: 55px;
       overflow: hidden;
-      font-size: 17px;
+      font-size: 16px;
     }
 
     h3 {

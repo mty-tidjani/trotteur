@@ -9,12 +9,6 @@ module.exports = {
                 implementation: require('node-sass'),
             },
         },
-        {
-            resolve: 'gatsby-plugin-google-analytics',
-            options: {
-                trackingId: 'xxxxxxx',
-            },
-        },
         'gatsby-plugin-react-helmet',
     ],
 };

@@ -1,0 +1,35 @@
+.modal_create_edit {
+  width: 400px;
+
+  .input_group {
+    width: 100%;
+    margin-bottom: 20px;
+
+    label {
+      display: block;
+      width: 100%;
+    }
+
+    input {
+      display: block;
+      padding: 7px;
+      margin: 5px 0;
+      outline: none;
+      width: 100%;
+
+      &:focus-within{
+        box-shadow: 0px 0px 6px 0px dodgerblue;
+        border-color: dodgerblue;
+      }
+    }
+  }
+
+  .file_btn{
+    background-color: dodgerblue;
+    padding: 10px;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    outline: none;
+  }
+}

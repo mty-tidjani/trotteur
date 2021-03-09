@@ -1,0 +1,52 @@
+.modal_base{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+
+  .back_drop{
+    background: #000;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.4;
+  }
+
+  .modal_content{
+    background: #fff;
+    align-items: center;
+    justify-content: center;
+    max-width: 90%;
+    margin: auto;
+    z-index: 1;
+    padding: 12px;
+    border-radius: 5px;
+    position: relative;
+
+    .close_btn{
+      position: absolute;
+      right: -5px;
+      top: -11px;
+      outline: none;
+      background-color: yellow;
+      border: 1px solid;
+      padding: 0px 9px 3px;
+      font-size: 25px;
+      cursor: pointer;
+      border-radius: 5px;
+
+      &:hover{
+        background-color: red;
+      }
+    }
+
+    .title{
+      text-align: center;
+    }
+
+  }
+  
+}
