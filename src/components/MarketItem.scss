@@ -44,6 +44,56 @@
       object-fit: cover;
       border-radius: 10px 10px 0 0;
     }
+
+    .drop_down {
+        position: absolute;
+        right: 7px;
+        top: 7px;
+        z-index: 1;
+
+        .menu_toggle {
+            background: #fff;
+            padding: 6px 4px 2px;
+            border-radius: 7px;
+            border: 1px solid #DDD;
+            outline: none;
+        }
+
+        .dropdown_menu{
+            background: #fff;
+            position: absolute;
+            width: max-content;
+            padding: 3px 0;
+            border-radius: 5px;
+            display: none;
+            transform: translateX(-191px);
+            box-shadow: 0px 0px 10px 0px #0006;
+
+            a{
+                display: block;
+                text-decoration: none;
+                color: #000;
+                padding: 5px 10px;
+                display: flex;
+                align-items: center;
+                font-size: 15px;
+
+                &:hover {
+                    background-color: #eee;
+                }
+
+                img {
+                    width: 25px;
+                    padding: 4px;
+                }
+            }
+        }
+
+        &.show .dropdown_menu {
+            display: block;
+        }
+    }
+    
   }
 
   .texts {
