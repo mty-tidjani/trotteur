@@ -1,26 +1,24 @@
-import { Request, response, Response } from "express";
-import { ERROR, marketItemSCD, SUCCESS, userSCD } from "../_constant";
-import { User } from "../models/user.model";
+import { Request, Response } from "express";
+import { ERROR, marketItemSCD, SUCCESS } from "../_constant";
 import { handleError, sendResp } from "../_utils/response";
-import bcrypt from "bcrypt";
-import { jwtTokenGenerator } from "../_utils/jwt.utils";
 import { MarketItem } from "../models/marketitiem.model";
 import { Types } from "mongoose";
+import { RichRequest } from "../_types/common";
 
 export class MarketItemController {
   public static create = async (
-    req: Request,
+    req: RichRequest,
     res: Response
   ): Promise<unknown> => {
-    const { title, price } = req.body;    
+    const { title, price } = req.body; 
+    const { userId } = req;
     try {
       const markIt = new MarketItem({
         title,
         price,
+        user: userId,
         url: '/img/' + req.file.filename,
-      });
-      console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
-      
+      });      
   
       await markIt.save()
 
@@ -31,12 +29,14 @@ export class MarketItemController {
   };
 
   public static update = async (
-    req: Request,
+    req: RichRequest,
     res: Response
   ): Promise<unknown> => {
     const { title, price, _id } = req.body;
     
     try {
+      // Todo check if userId owns the Item
+
       const item = await MarketItem.findById(_id);
       if (!item) return sendResp(res, ERROR.ITEM_NOT_FOUND);
   
@@ -44,9 +44,7 @@ export class MarketItemController {
       item.price = price ? price : item.price;
       item.url = req.file?.filename ? '/img/' + req.file.filename : item.url;
   
-      await item.save();
-      console.log('yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy');
-      
+      await item.save();      
 
       return sendResp(res, SUCCESS.MI_UPDATED, item);
     } catch (err) {
@@ -55,12 +53,14 @@ export class MarketItemController {
   };
 
   public static delete = async (
-    req: Request,
+    req: RichRequest,
     res: Response
   ): Promise<unknown> => {
     const { miId } = req.params;
 
     try {
+
+      // Todo check if userId owns the Item
 
       const item = await MarketItem.findById(miId);
       

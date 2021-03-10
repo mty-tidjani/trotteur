@@ -1,4 +1,4 @@
-import { Schema, model, Document } from "mongoose";
+import { Schema, model, Document, Types } from "mongoose";
 import { MODEL } from "../_constant";
 
 export interface IMarketItem extends Document {
@@ -7,6 +7,7 @@ export interface IMarketItem extends Document {
   price: number;
   image: string;
   url: string;
+  user: any;
 }
 
 const marketSchema: Schema<IMarketItem> = new Schema(
@@ -16,6 +17,7 @@ const marketSchema: Schema<IMarketItem> = new Schema(
     price: { type: Number },
     image: { type: String },
     url: { type: String },
+    user: { type: Types.ObjectId, ref: MODEL.USER },
   },
   {
     versionKey: false,

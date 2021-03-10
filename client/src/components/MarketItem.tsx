@@ -46,7 +46,7 @@ export const MarketItem: React.FC<MarketItemProps> = ({
         <Lnk onClick={onView}>
           <div className="img_container">
             <div className="img_overlay" />
-            <img src={marketItem.image ? marketItem.image : baseUrl + marketItem.url} alt=""/>
+            <img src={marketItem.url ? baseUrl + marketItem.url : marketItem.image} alt=""/>
           </div>
           <div className="texts">
             <h2 className="wrap_tittle">{marketItem.title}</h2>

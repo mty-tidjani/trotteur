@@ -20,7 +20,7 @@ const ViewItemModal: React.FC<ViewItemModalProps> = ({
       <div className="">
         
         <div className="img_holder">
-          <img src={marketItem?.image ? marketItem.image : baseUrl + marketItem?.url} alt=""/>
+          <img src={marketItem?.url ? baseUrl + marketItem?.url : marketItem?.image} alt=""/>
         </div>
         <div className="item_body">
           <div className="title">{marketItem?.title}</div>

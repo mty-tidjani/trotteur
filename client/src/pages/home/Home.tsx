@@ -8,6 +8,7 @@ import ViewItemModal from '../../components/modals/ViewItemModal';
 import Lnk from '../../components/Lnk';
 import { http } from '../../_utils/http';
 import { MARKET_ITEMS } from '../../_utils/end.points';
+import NavBar from '../../components/layout/NavBar';
 
 const HomePage: React.FC = () => {
   const [modal, setModal] = useState<{ show: boolean; edit?: MarketItemType }>({
@@ -19,16 +20,11 @@ const HomePage: React.FC = () => {
   const [items, setItems] = useState<MarketItemType[]>([]);
 
   const getItems = () => {
-    fetch('http://localhost:4040/api/marketitems')
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        setItems(res.result);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    http.get(MARKET_ITEMS).then((res) => {
+      if (res.data.success) {
+        setItems(res.data.result);
+      }
+    });
   };
 
   useEffect(() => {
@@ -51,23 +47,24 @@ const HomePage: React.FC = () => {
   }, []);
 
   const deleteItem = (_id: string) => {
-      http.delete(MARKET_ITEMS + '/' + _id).then(res => {
-          if (res.data.success) {
-            setItems(items.filter((x) => x._id !== _id));
-          }
-      })
-  }
+    http.delete(MARKET_ITEMS + '/' + _id).then((res) => {
+      if (res.data.success) {
+        setItems(items.filter((x) => x._id !== _id));
+      }
+    });
+  };
 
   return (
     <>
+      <NavBar />
       <main id="index_main_">
         <title>Home Page</title>
         <ul className="items_list">
           <div className="market_item_i">
             <div className="add_new">
-            <Lnk onClick={() => setModal({ show: true })}>
-              <span>+ Créer une nouvelle offre</span>
-            </Lnk>
+              <Lnk onClick={() => setModal({ show: true })}>
+                <span>+ Créer une nouvelle offre</span>
+              </Lnk>
             </div>
           </div>
           {items.map((item, i) => (
@@ -86,15 +83,15 @@ const HomePage: React.FC = () => {
 
       <CreationModal
         onClose={() => setModal({ show: false, edit: undefined })}
-        onDone={(item) =>  {
-            const index = items.findIndex(x => x._id == item._id);
-            if (index >= 0) {
-                items[index] = item;
-            }else{
-                items.push(item);
-            }
-            setItems(items);
-            setModal({ show: false, edit: undefined })
+        onDone={(item) => {
+          const index = items.findIndex((x) => x._id == item._id);
+          if (index >= 0) {
+            items[index] = item;
+          } else {
+            items.push(item);
+          }
+          setItems(items);
+          setModal({ show: false, edit: undefined });
         }}
         show={modal.show}
         edit={modal.edit}
